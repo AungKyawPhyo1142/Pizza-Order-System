@@ -79,6 +79,11 @@ class UserController extends Controller
 
     public function filter($categoryId){
 
+        $pizza = Products::where('category_id',$categoryId)
+                ->orderBy('created_at','desc')->get();
+        $category = Category::get();
+        return view('user.mainPage.home',compact('pizza','category'));
+
     }
 
     // private functions
