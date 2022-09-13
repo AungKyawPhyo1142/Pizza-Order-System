@@ -91,6 +91,11 @@ Route::middleware(['auth'])->group(function () {
             Route::get('details/{id}',[UserController::class,'pizzaDetails'])->name('user#pizzaDetails');
         });
 
+        // cart
+        Route::prefix('cart')->group(function(){
+            Route::get('list',[UserController::class,'cartList'])->name('user#cartList');
+        });
+
         // password
         Route::prefix('password')->group(function(){
             Route::get('change',[UserController::class,'changePasswordPage'])->name('user#changePasswordPage');

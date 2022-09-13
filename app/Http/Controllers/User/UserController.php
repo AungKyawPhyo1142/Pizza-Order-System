@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Storage;
 use Carbon\Carbon;
+use App\Models\Cart;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Products;
@@ -19,7 +20,8 @@ class UserController extends Controller
     public function homePage(){
         $pizza = Products::orderBy('created_at','desc')->get();
         $category = Category::get();
-        return view('user.mainPage.home',compact('pizza','category'));
+        $cart = Cart::where('user_id',Auth::user()->id)->get();
+        return view('user.mainPage.home',compact('pizza','category','cart'));
     }
 
     // change password page
@@ -89,6 +91,18 @@ class UserController extends Controller
     public function pizzaDetails($pizzaID){
         $pizza = Products::where('id',$pizzaID)->first();
         return view('user.mainPage.details',compact('pizza'));
+    }
+
+    public function cartList(){
+        $cartList = Cart::  select('carts.*','products.name as pizza_name','products.price as pizza_price')
+                            ->leftJoin('products','products.id','carts.product_id')
+                            ->where('user_id',Auth::user()->id)->get();
+
+        $totalPrice = 0;
+        foreach($cartList as $c){
+            $totalPrice+= $c->pizza_price * $c->quantity;
+        }
+        return view('user.mainPage.cart',compact('cartList','totalPrice'));
     }
 
     // private functions

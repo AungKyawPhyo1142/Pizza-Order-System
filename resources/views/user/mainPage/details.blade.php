@@ -31,6 +31,9 @@
                     <h3 class="font-weight-semi-bold mb-4">{{$pizza->price}} Kyats</h3>
                     <p class="mb-4">{{$pizza->description}}</p>
                     <div class="d-flex align-items-center mb-4 pt-2">
+                        <input type="hidden" id="userID" value="{{Auth::user()->id}}">
+                        <input type="hidden" id="pizzaID" value="{{$pizza->id}}">
+
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
                                 <button class="btn btn-primary btn-minus">
@@ -38,8 +41,6 @@
                                 </button>
                             </div>
                             <input type="text" class="form-control bg-secondary border-0 text-center" value="1" id="orderCount">
-                            <input type="hidden" name="" id="userID" value="{{Auth::user()->id}}">
-                            <input type="hidden" name="" id="pizzaID" value="{{$pizza->id}}">
                             <div class="input-group-btn">
                                 <button class="btn btn-primary btn-plus">
                                     <i class="fa fa-plus"></i>
