@@ -105,6 +105,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::prefix('ajax')->group(function(){
             Route::get('pizzaList',[AjaxController::class,'pizzaList'])->name('ajax#pizzaList');
+            Route::get('addToCart',[AjaxController::class,'addToCart'])->name('ajax#addToCart');
         });
 
     });
