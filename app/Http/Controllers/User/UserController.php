@@ -86,6 +86,11 @@ class UserController extends Controller
 
     }
 
+    public function pizzaDetails($pizzaID){
+        $pizza = Products::where('id',$pizzaID)->first();
+        return view('user.mainPage.details',compact('pizza'));
+    }
+
     // private functions
 
     private function checkPasswordValidation($req){
