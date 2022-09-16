@@ -51,6 +51,15 @@
                                         </span>
                                     </button>
                                 </a>
+                                <a href="{{route('user#history')}}" class="ms-3">
+                                    <button type="button" class="btn btn-dark text-white border rounded position-relative">
+                                        <i class="fa-solid fa-clock-rotate-left me-1"></i>
+                                        History
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            {{count($history)}}
+                                        </span>
+                                    </button>
+                                </a>
                             </div>
                             <div class="ml-2">
                                 <div class="btn-group">

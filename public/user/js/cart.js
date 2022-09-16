@@ -20,13 +20,6 @@ $(document).ready(function() {
         finalCostCalculation();
     })
 
-    // for X (remove)
-    $('.btnRemove').click(function() {
-        $parentNode = $(this).parents("tr");
-        $parentNode.remove();
-        finalCostCalculation();
-    })
-
     // functions
     function finalCostCalculation() {
         $finalTotal = 0;

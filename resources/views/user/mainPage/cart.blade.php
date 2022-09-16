@@ -24,6 +24,7 @@
                                 <td><img src="{{asset('storage/'.$item->product_image)}}" alt="" class="img-thumbnail shadow-sm" style="width: 80px;"></td>
                                 <td class="align-middle">
                                     {{$item->pizza_name}}
+                                    <input type="hidden" name="" id="orderId" value="{{$item->id}}">
                                     <input type="hidden" name="" id="productId" value="{{$item->product_id}}">
                                     <input type="hidden" name="" id="userID" value="{{$item->user_id}}">
                                 </td>
@@ -71,6 +72,7 @@
                             <h5 id="finalPrice">{{$totalPrice + 3000}}</h5>
                         </div>
                         <button id="orderBtn" class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                        <button id="clearBtn" class="btn btn-block btn-danger font-weight-bold my-3 py-3">Clear Cart</button>
                     </div>
                 </div>
             </div>
@@ -84,6 +86,8 @@
     <script src="{{asset('user/js/cart.js')}}"></script>
     <script>
         $(document).ready(function() {
+
+            // order Btn
             $('#orderBtn').click(function(){
 
                 $orderList = [];
@@ -114,6 +118,56 @@
 
 
             })
+
+            // clear Btn
+            $('#clearBtn').click(function(){
+
+                // delete data from db
+                $.ajax({
+                    type: "get",
+                    url: "http://127.0.0.1:8000/user/ajax/clear/cart",
+                    dataType: "json"
+                })
+
+                // clear for UI
+                $('#dataTable tbody tr').remove();
+                $('#subTotalPrice').html('0 Kyats');
+                $('#finalPrice').html('3000 Kyats');
+
+            })
+
+            // for X (remove)
+            $('.btnRemove').click(function() {
+
+                $parentNode = $(this).parents("tr");
+                $orderID = $parentNode.find('#orderId').val();
+                $productID = $parentNode.find('#productId').val();
+
+                // delete data from db
+                $.ajax({
+                    type: "get",
+                    url: "http://127.0.0.1:8000/user/ajax/clear/currentProduct",
+                    data: {'product_id' : $productID,'order_id':$orderID},
+                    dataType: "json"
+                })
+
+                // clear the row from UI
+                $parentNode.remove();
+                finalCostCalculation();
+            })
+
+            // functions
+            function finalCostCalculation() {
+                $finalTotal = 0;
+                $('#dataTable tbody tr').each(function(index, row) {
+                    $finalTotal += Number($(row).find('#total').text().replace("Kyats", ""));
+                })
+
+                $('#subTotalPrice').html(`${$finalTotal} Kyats`)
+                $('#finalPrice').html(`${$finalTotal+3000} Kyats`)
+            }
+
+
         })
     </script>
 @endsection

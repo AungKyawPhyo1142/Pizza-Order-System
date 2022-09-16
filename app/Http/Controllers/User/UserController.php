@@ -6,6 +6,7 @@ use Storage;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class UserController extends Controller
         $pizza = Products::orderBy('created_at','desc')->get();
         $category = Category::get();
         $cart = Cart::where('user_id',Auth::user()->id)->get();
-        return view('user.mainPage.home',compact('pizza','category','cart'));
+        $history = Order::where('user_id',Auth::user()->id)->get();
+        return view('user.mainPage.home',compact('pizza','category','cart','history'));
     }
 
     // change password page
@@ -85,7 +87,8 @@ class UserController extends Controller
                 ->orderBy('created_at','desc')->get();
         $category = Category::get();
         $cart = Cart::where('user_id',Auth::user()->id)->get();
-        return view('user.mainPage.home',compact('pizza','category','cart'));
+        $history = Order::where('user_id',Auth::user()->id)->get();
+        return view('user.mainPage.home',compact('pizza','category','cart','history'));
 
     }
 
@@ -104,6 +107,12 @@ class UserController extends Controller
             $totalPrice+= $c->pizza_price * $c->quantity;
         }
         return view('user.mainPage.cart',compact('cartList','totalPrice'));
+    }
+
+    // go to histroy page
+    public function history(){
+        $order = Order::where('user_id',Auth::user()->id)->paginate(5);
+        return view('user.mainPage.history',compact('order'));
     }
 
     // private functions
