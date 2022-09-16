@@ -64,6 +64,11 @@
                                 <i class="fa-solid fa-pizza-slice"></i>Products
                             </a>
                         </li>
+                        <li class="has-sub">
+                            <a href="{{route('admin#orderList')}}">
+                                <i class="fa-solid fa-file-invoice"></i>Order List
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -235,7 +240,12 @@
     <!-- Main JS-->
     <script src="{{asset('admin/js/main.js')}}"></script>
 
+    {{-- JQuery --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
+
+@yield('scriptSection')
 
 </html>
 <!-- end document-->
