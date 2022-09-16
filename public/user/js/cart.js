@@ -30,7 +30,7 @@ $(document).ready(function() {
     // functions
     function finalCostCalculation() {
         $finalTotal = 0;
-        $('#dataTable tr').each(function(index, row) {
+        $('#dataTable tbody tr').each(function(index, row) {
             $finalTotal += Number($(row).find('#total').text().replace("Kyats", ""));
         })
 
