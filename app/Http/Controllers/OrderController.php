@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -31,4 +32,13 @@ class OrderController extends Controller
         }
         return response()->json($order, 200);
     }
+
+    public function changeStatus(Request $req){
+        logger($req->all());
+        Order::where('id',$req->order_id)->update([
+            'status'=> $req->status,
+            'updated_at' => Carbon::now()
+        ]);
+    }
+
 }

@@ -65,13 +65,14 @@
 
                                         @foreach ($order as $item)
                                         <tr class="tr-shadow">
+                                            <input type="hidden" name="" class="orderId" value="{{$item->id}}">
                                             <td class="">{{$item->user_id}}</td>
                                             <td class="">{{$item->username}}</td>
                                             <td class="">{{$item->order_code}}</td>
                                             <td class="">{{$item->total_price}} Kyats</td>
                                             <td class="">{{$item->created_at->format('j-F-Y')}}</td>
                                             <td class="">
-                                                <select name="status" id="" class="form-control">
+                                                <select name="status" id="" class="form-control status-change">
                                                     <option value="0" @if($item->status==0) selected @endif>Pending</option>
                                                     <option value="1" @if($item->status==1) selected @endif>Accept</option>
                                                     <option value="2" @if($item->status==2) selected @endif>Reject</option>
@@ -112,13 +113,6 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-
-
-                        {{-- <p style="font-size: 1.65rem" class=" text-secondary mt-5">
-                            There are no data at the moment. <br>
-                            Please check again after inserting some data.
-                        </p> --}}
-
 
                 </div>
             </div>
@@ -170,7 +164,7 @@
 
                             if(response[$i].status==0){
                                 $statusMessage = `
-                                    <select name="status" id="" class="form-control">
+                                    <select name="status" id="" class="form-control status-change">
                                         <option value="0" selected>Pending</option>
                                         <option value="1">Accept</option>
                                         <option value="2">Reject</option>
@@ -179,7 +173,7 @@
                             }
                             else if(response[$i].status==1){
                                 $statusMessage = `
-                                    <select name="status" id="" class="form-control">
+                                    <select name="status" id="" class="form-control status-change">
                                         <option value="0">Pending</option>
                                         <option value="1" selected>Accept</option>
                                         <option value="2">Reject</option>
@@ -188,7 +182,7 @@
                             }
                             else{
                                 $statusMessage = `
-                                    <select name="status" id="" class="form-control">
+                                    <select name="status" id="" class="form-control status-change">
                                         <option value="0">Pending</option>
                                         <option value="1">Accept</option>
                                         <option value="2" selected>Reject</option>
@@ -198,6 +192,7 @@
 
                             $list += `
                                         <tr class="tr-shadow">
+                                            <input type="text" name="" class="orderId" value="${response[$i].id}"">
                                             <td class="">${response[$i].user_id}</td>
                                             <td class="">${response[$i].username}</td>
                                             <td class="">${response[$i].order_code}</td>
@@ -216,6 +211,28 @@
                     }
                 });
             }
+
+            // change status
+            $('.status-change').change(function(){
+                $currentStatus = $(this).val();
+                $parentNode = $(this).parents("tr");
+                $orderId = $parentNode.find('.orderId').val();
+
+                $data = {
+                    'status' : $currentStatus,
+                    'order_id' : $orderId
+                };
+
+                console.log($data);
+
+                $.ajax({
+                    type:'get',
+                    url: 'http://127.0.0.1:8000/order/ajax/change/status',
+                    data: $data,
+                    dataType: 'json'
+                });
+
+            });
 
         });
     </script>
