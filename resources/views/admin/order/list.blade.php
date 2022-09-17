@@ -19,13 +19,6 @@
 
                     <div class="row d-flex align-items-center justify-content-between">
 
-                        <div class="col-4">
-                            <button id="allBtn" class="btn btn-info">All</button>
-                            <button id="pendingBtn" class="btn btn-warning text-white">Pending</button>
-                            <button id="acceptBtn" class="btn btn-success">Accept</button>
-                            <button id="rejectBtn" class="btn btn-danger">Reject</button>
-                        </div>
-
                         <div class="col-3">
                             <i class="fa-solid fa-database me-1"></i>
                             <span>Total Data: </span>
@@ -34,14 +27,20 @@
 
 
                         <div class="col-3">
+                            <form action="{{route('admin#sortStatus')}}" method="get">
+                                    @csrf
+                                    <div class="input-group mb-3">
+                                        <select name="status" id="" class="form-control status-change" aria-describedby="button-addon2">
+                                            <option value="">All</option>
+                                            <option value="0" @if(request('status')=='0') selected @endif>Pending</option>
+                                            <option value="1" @if(request('status')=='1') selected @endif>Accept</option>
+                                            <option value="2" @if(request('status')=='2') selected @endif>Reject</option>
+                                        </select>
+                                        <button class="btn btn-secondary" type="submit" id="button-addon2">Filter</button>
+                                    </div>
 
-                            <form action="{{route('product#showList')}}" method="GET">
-                                @csrf
-                                <div class="input-group mb-3">
-                                    <input type="text" name="searchKey" class="form-control" value="{{old('searchKey')}}" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                                    <button class="btn btn-secondary" type="submit" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </div>
                             </form>
+
                         </div>
 
                     </div>
@@ -88,7 +87,7 @@
                                     </tbody>
                                 </table>
                                 <div>
-                                    {{$order->links()}}
+                                    {{-- {{$order->links()}} --}}
                                 </div>
 
                             @else
@@ -222,8 +221,6 @@
                     'status' : $currentStatus,
                     'order_id' : $orderId
                 };
-
-                console.log($data);
 
                 $.ajax({
                     type:'get',

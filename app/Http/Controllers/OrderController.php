@@ -30,7 +30,7 @@ class OrderController extends Controller
         else{
             $order = $order->where('orders.status',$req->status)->get();
         }
-        return response()->json($order, 200);
+        return view('admin.order.list',compact('order'));
     }
 
     public function changeStatus(Request $req){
