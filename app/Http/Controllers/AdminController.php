@@ -115,6 +115,14 @@ class AdminController extends Controller
         return redirect()->route('admin#showAdminList');
     }
 
+    public function ajaxChangeRole(Request $req){
+        $data = User::where('id',$req->user_id)->update([
+            'role'=> $req->role,
+            'updated_at' => Carbon::now()
+        ]);
+        return response()->json($data, 200);
+    }
+
     // private functions
 
     private function requestUserData($req){

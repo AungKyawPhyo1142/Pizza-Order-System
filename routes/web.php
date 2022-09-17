@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('deleteAdmin/{id}',[AdminController::class,'deleteAdmin'])->name('admin#delete');
             Route::get('changeRole/{id}',[AdminController::class,'changeRole'])->name('admin#changeRole');
             Route::post('change/role/{id}',[AdminController::class,'change'])->name('admin#change');
+            Route::get('ajax/changeRole',[AdminController::class,'ajaxChangeRole'])->name('admin#ajaxChangeRole');
         });
 
         // products

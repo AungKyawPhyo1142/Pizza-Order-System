@@ -56,7 +56,8 @@
                                         <th>Gender</th>
                                         <th>Phone</th>
                                         <th>Address</th>
-                                        <th></th>
+                                        <th>Role</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,6 +65,7 @@
                                     @foreach ($admin as $item)
 
                                     <tr class="tr-shadow">
+                                        <input type="hidden" name="" id="userId" value="{{$item->id}}">
                                         <td class="col-2">
                                             @if ($item->image==null)
                                                 <img src="{{asset('image/default_profile.png')}}" class="img-thumbnail shadow-sm" alt="">
@@ -72,28 +74,32 @@
                                                 <img src="{{asset('storage/'.$item->image)}}" class="img-thumbnail shadow-sm" alt="">
                                             @endif
                                         </td>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->email}}</td>
-                                        <td>{{$item->gender}}</td>
-                                        <td>{{$item->phone}}</td>
-                                        <td>{{$item->address}}</td>
-                                        <td class="col-2">
-                                            <div class="table-data-feature">
-                                                @if (Auth::user()->id != $item->id)
-                                                    <a href="{{route('admin#delete',$item->id)}}">
-                                                        <button class="item me-2" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                            <i class="zmdi zmdi-delete"></i>
-                                                        </button>
-                                                    </a>
-                                                    <a href="{{route('admin#changeRole',$item->id)}}">
-                                                        <button class="item me-2" data-toggle="tooltip" data-placement="top" title="Role Change">
-                                                            <i class="fa-solid fa-person-circle-exclamation me-2"></i>
-                                                        </button>
-                                                    </a>
-                                                @endif
-                                            </div>
-                                        </td>
+                                        <td class="">{{$item->name}}</td>
+                                        <td class="">{{$item->email}}</td>
+                                        <td class="">{{$item->gender}}</td>
+                                        <td class="">{{$item->phone}}</td>
+                                        <td class="">{{$item->address}}</td>
+                                        {{-- <td class="col-2"> --}}
 
+                                            @if (Auth::user()->id != $item->id)
+
+                                                <td class="">
+                                                    <select name="" id="" class="form-control role-change">
+                                                        <option value="admin" selected>Admin</option>
+                                                        <option value="user">User</option>
+                                                    </select>
+                                                </td>
+
+                                                <td class="">
+                                                    <a href="{{route('admin#delete',$item->id)}}">
+                                                        <i class="fa-regular fa-trash-can fs-4 text-dark"></i>
+                                                    </a>
+                                                </td>
+
+                                            @else
+                                                <td></td>
+                                                <td></td>
+                                            @endif
                                     </tr>
 
                                     <tr class="spacer"></tr>
@@ -128,5 +134,34 @@
             </div>
         </div>
     </div>
+
+@endsection
+
+@section('scriptSection')
+
+<script>
+    $(document).ready(function(){
+        $('.role-change').change(function(){
+            $role = $(this).val();
+
+            $parentNode = $(this).parents("tr");
+            $userId = $parentNode.find('#userId').val();
+
+            $.ajax({
+                    type:'get',
+                    url: 'http://127.0.0.1:8000/admin/ajax/changeRole',
+                    data: {
+                        'role':$role,
+                        'user_id':$userId },
+                    dataType: 'json',
+                    success:function(response){
+                        window.location.reload(true);
+                    }
+            });
+
+
+        })
+    });
+</script>
 
 @endsection
