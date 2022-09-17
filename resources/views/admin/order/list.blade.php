@@ -67,7 +67,9 @@
                                             <input type="hidden" name="" class="orderId" value="{{$item->id}}">
                                             <td class="">{{$item->user_id}}</td>
                                             <td class="">{{$item->username}}</td>
-                                            <td class="">{{$item->order_code}}</td>
+                                            <td class="">
+                                                <a href="{{route('admin#orderInfo',$item->order_code)}}">{{$item->order_code}}</a>
+                                            </td>
                                             <td class="">{{$item->total_price}} Kyats</td>
                                             <td class="">{{$item->created_at->format('j-F-Y')}}</td>
                                             <td class="">

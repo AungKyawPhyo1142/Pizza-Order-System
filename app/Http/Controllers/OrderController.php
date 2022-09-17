@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\OrderList;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -34,11 +35,21 @@ class OrderController extends Controller
     }
 
     public function changeStatus(Request $req){
-        logger($req->all());
         Order::where('id',$req->order_id)->update([
             'status'=> $req->status,
             'updated_at' => Carbon::now()
         ]);
+    }
+
+    public function orderInfo($orderCode){
+        $order = Order::where('order_code',$orderCode)->first();
+
+        $orderInfo = OrderList::select('order_lists.*','users.name as username','products.image as product_image','products.name as product_name')
+                    ->leftJoin('users','users.id','order_lists.user_id')
+                    ->leftJoin('products','products.id','order_lists.product_id')
+                    ->where('order_code',$orderCode)
+                    ->get();
+        return view('admin.order.orderInfo',compact('orderInfo','order'));
     }
 
 }

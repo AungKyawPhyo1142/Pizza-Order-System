@@ -84,6 +84,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('list',[OrderController::class,'orderList'])->name('admin#orderList');
             Route::get('order/change/status',[OrderController::class,'sortStatus'])->name('admin#sortStatus');
             Route::get('ajax/change/status',[OrderController::class,'changeStatus'])->name('admin#changeStatus');
+            Route::get('orderInfo/{order_code}',[OrderController::class,'orderInfo'])->name('admin#orderInfo');
         });
 
     });
