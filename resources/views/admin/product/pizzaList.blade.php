@@ -17,17 +17,14 @@
                         </div>
                         <div class="table-data__tool-center d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-database me-2"></i>
-                            {{-- <span>{{count($categories)}}</span> --}}
+                            <span>{{count($pizzas)}}</span>
                         </div>
                         <div class="table-data__tool-right">
                             <a href="{{route('product#createPage')}}">
                                 <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                    <i class="zmdi zmdi-plus"></i>Add Pizza
+                                    <i class="zmdi zmdi-plus"></i>Add Food
                                 </button>
                             </a>
-                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                CSV download
-                            </button>
                         </div>
                     </div>
 
@@ -122,14 +119,6 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-
-
-                        {{-- <p style="font-size: 1.65rem" class=" text-secondary mt-5">
-                            There are no data at the moment. <br>
-                            Please check again after inserting some data.
-                        </p> --}}
-
-
                 </div>
             </div>
         </div>

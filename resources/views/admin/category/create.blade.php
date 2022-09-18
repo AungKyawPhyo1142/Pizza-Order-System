@@ -23,7 +23,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">Name</label>
-                                    <input id="cc-pament" name="categoryName" type="text" value="{{old('categoryName')}}" class="form-control @error('categoryName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Seafood...">
+                                    <input id="cc-pament" name="categoryName" type="text" value="{{old('categoryName')}}" class="form-control @error('categoryName') is-invalid @enderror" aria-required="true" aria-invalid="false" placeholder="Pizza">
                                     @error('categoryName')
                                         <small class="invalid-feedback">{{$message}}</small>
                                     @enderror
@@ -32,7 +32,6 @@
                                 <div>
                                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                         <span id="payment-button-amount">Create</span>
-                                        {{-- <span id="payment-button-sending" style="display:none;">Sending…</span> --}}
                                         <i class="fa-solid fa-circle-right"></i>
                                     </button>
                                 </div>

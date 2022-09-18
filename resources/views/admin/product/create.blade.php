@@ -16,7 +16,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title">
-                                <h3 class="text-center title-2">Add Your Pizza</h3>
+                                <h3 class="text-center title-2">Add Your Food or Drinks</h3>
                             </div>
                             <hr>
                             <form action="{{route('product#create')}}" method="post" novalidate="novalidate" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
                                 <div class="form-group">
                                     <label for="cc-payment" class="control-label mb-1">Category</label>
                                     <select name="pizzaCategory" class="form-control" id="" class="category">
-                                        <option value="">Select a pizza type</option>
+                                        <option value="">Select a food type</option>
                                         @foreach ($categories as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach
@@ -75,7 +75,6 @@
                                 <div>
                                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                         <span id="payment-button-amount">Create</span>
-                                        {{-- <span id="payment-button-sending" style="display:none;">Sending…</span> --}}
                                         <i class="fa-solid fa-circle-right"></i>
                                     </button>
                                 </div>

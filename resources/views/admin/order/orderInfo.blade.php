@@ -29,24 +29,6 @@
                             <span> {{count($orderInfo)}} </span>
                         </div>
 
-
-
-                        {{-- <div class="col-3">
-                            <form action="{{route('admin#sortStatus')}}" method="get">
-                                    @csrf
-                                    <div class="input-group mb-3">
-                                        <select name="status" id="" class="form-control status-change" aria-describedby="button-addon2">
-                                            <option value="">All</option>
-                                            <option value="0" @if(request('status')=='0') selected @endif>Pending</option>
-                                            <option value="1" @if(request('status')=='1') selected @endif>Accept</option>
-                                            <option value="2" @if(request('status')=='2') selected @endif>Reject</option>
-                                        </select>
-                                        <button class="btn btn-secondary" type="submit" id="button-addon2">Filter</button>
-                                    </div>
-
-                            </form>
-                        </div> --}}
-
                     </div>
 
                         <div class="row col-6 mt-3">

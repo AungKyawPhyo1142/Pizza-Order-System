@@ -20,7 +20,6 @@
                     <tbody class="align-middle">
                         @foreach ($cartList as $item)
                             <tr>
-                                {{-- <input type="hidden" name="" id="price" value="{{$item->pizza_price}}"> --}}
                                 <td><img src="{{asset('storage/'.$item->product_image)}}" alt="" class="img-thumbnail shadow-sm" style="width: 80px;"></td>
                                 <td class="align-middle">
                                     {{$item->pizza_name}}

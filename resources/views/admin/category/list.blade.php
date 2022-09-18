@@ -25,9 +25,6 @@
                                     <i class="zmdi zmdi-plus"></i>Add Category
                                 </button>
                             </a>
-                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                CSV download
-                            </button>
                         </div>
                     </div>
 
@@ -67,9 +64,6 @@
                                         <td>{{$item->created_at->format('j-F-Y')}}</td>
                                         <td>
                                             <div class="table-data-feature">
-                                                {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                    <i class="fa-solid fa-eye"></i>
-                                                </button> --}}
                                                 <a href="{{route('category#editPage',$item->id)}}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                     <i class="zmdi zmdi-edit"></i>
                                                 </a>

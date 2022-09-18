@@ -39,7 +39,6 @@
 
                                         <div class="form-group">
                                             <label for="cc-payment" class="control-label mb-1">Role:</label>
-                                            {{-- <input id="cc-pament" name="role" type="text" class="form-control @error('role') is-invalid @enderror" aria-required="true" aria-invalid="false" value="{{$account->role}}"> --}}
                                             <select name="role" class="form-control" id="">
                                                 <option value="admin @if($account->role == 'admin') selected @endif">Admin</option>
                                                 <option value="user @if($account->role == 'user') selected @endif">User</option>

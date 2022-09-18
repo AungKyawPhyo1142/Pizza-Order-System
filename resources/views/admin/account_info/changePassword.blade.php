@@ -42,7 +42,6 @@
                                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                         <i class="fa-solid fa-arrows-rotate me-1"></i>
                                         <span id="payment-button-amount">Change Password</span>
-                                        {{-- <span id="payment-button-sending" style="display:none;">Sending…</span> --}}
                                     </button>
                                 </div>
                             </form>

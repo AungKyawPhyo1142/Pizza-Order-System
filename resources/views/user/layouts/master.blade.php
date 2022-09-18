@@ -52,8 +52,6 @@
     <div class="container-fluid bg-dark mb-30">
         <div class="row px-xl-5">
             <div class="col-lg-3 d-none d-lg-block text-center pt-3">
-                {{-- <span class=""><i class="fa-solid fa-user text-white h3"></i></span>
-                <span class="text-white h3 text-center">{{Auth::user()->name}}</span> --}}
             </div>
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">

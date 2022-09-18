@@ -98,9 +98,6 @@
 
                                 </tbody>
                             </table>
-                            <div class="">
-                                {{-- {{$admin->links()}} --}}
-                            </div>
                         </div>
                         <!-- END DATA TABLE -->
 

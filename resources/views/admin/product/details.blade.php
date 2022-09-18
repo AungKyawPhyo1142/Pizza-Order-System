@@ -47,11 +47,15 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="row d-flex">
+                            <div class="row d-flex ">
                                 <div class="col-6 d-flex align-items-center">
                                     <span class=" control-label"><i class="fa-solid fa-calendar-check me-2"></i>Created Date: {{$pizza->created_at->format('j-F-Y')}}</span>
                                 </div>
-                                <div class="col-6 text-end">
+                                <div class="col-6 text-end d-flex justify-content-between align-items-center">
+                                    <a href="{{route('product#showList')}}" class="btn btn-dark text-white">
+                                        <i class="fa-solid fa-arrow-left me-2"></i>
+                                        Back
+                                    </a>
                                     <a href="{{route('product#editPage',$pizza->id)}}" class="btn btn-dark text-white">
                                         <i class="fa-solid fa-pencil me-2"></i>
                                         Edit Pizza
