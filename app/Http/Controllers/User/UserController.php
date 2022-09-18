@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Contact;
 use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Http\Request;
@@ -113,6 +114,29 @@ class UserController extends Controller
     public function history(){
         $order = Order::where('user_id',Auth::user()->id)->paginate(5);
         return view('user.mainPage.history',compact('order'));
+    }
+
+    // go to contact page
+    public function contactPage(){
+        return view('user.contact.contactPage');
+    }
+
+    // send feedback
+    public function feedback(Request $req){
+        $user_id = Auth::user()->id;
+        $userData = User::where('id',$user_id)->first();
+        $feedback = $req->feedback;
+
+        $data = [
+            'name' => $userData->name,
+            'message' => $feedback,
+            'email' => $userData->email
+        ];
+
+        Contact::create($data);
+
+        return back()->with(['sendSuccess'=>'Feedback has been sent successfully!']);
+
     }
 
     // private functions

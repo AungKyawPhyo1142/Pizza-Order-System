@@ -74,6 +74,11 @@
                                 <i class="fa-solid fa-user-group"></i>User List
                             </a>
                         </li>
+                        <li class="has-sub">
+                            <a href="{{route('admin#feedbacks')}}">
+                                <i class="fa-solid fa-comment"></i>User Feedbacks
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

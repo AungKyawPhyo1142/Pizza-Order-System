@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title','Account Profile')
+@section('title','Account Edit')
 
 @section('content')
 

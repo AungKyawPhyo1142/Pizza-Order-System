@@ -92,8 +92,10 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('user')->group(function(){
             Route::get('list',[AdminUserController::class,'showUserList'])->name('admin#showUserList');
             Route::get('change/role',[AdminUserController::class,'changeUserRole'])->name('admin#changeUserRole');
+            Route::get('feedbacks',[AdminUserController::class,'feedbacks'])->name('admin#feedbacks');
+            Route::get('feedbacks/delete/{id}',[AdminUserController::class,'deleteFeedbacks'])->name('admin#deleteFeedbacks');
+            Route::get('feedbacks/view/{id}',[AdminUserController::class,'viewFeedbacks'])->name('admin#viewFeedbacks');
         });
-
 
     });
 
@@ -102,8 +104,10 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['prefix'=>'user','middleware'=>'user_auth'],function(){
 
         Route::get('/home',[UserController::class,'homePage'])->name('user#home');
+        Route::get('/contact',[UserController::class,'contactPage'])->name('user#contactPage');
         Route::get('filter/{id}',[UserController::class,'filter'])->name('user#filter');
         Route::get('history',[UserController::class,'history'])->name('user#history');
+        Route::post('feedback',[UserController::class,'feedback'])->name('user#feedback');
 
         // pizza
         Route::prefix('pizza')->group(function(){

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title','Pizza Edit Page')
+@section('title','Product Edit Page')
 
 @section('content')
 
