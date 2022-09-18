@@ -26,7 +26,7 @@
                             <small class="fas fa-star-half-alt"></small>
                             <small class="far fa-star"></small>
                         </div> --}}
-                        <small class="pt-1"><i class="fa-solid fa-eye me-1"></i> {{$pizza->view_count}} </small>
+                        <small class="pt-1"><i class="fa-solid fa-eye me-1"></i> {{$pizza->view_count + 1}} </small>
                     </div>
                     <h3 class="font-weight-semi-bold mb-4">{{$pizza->price}} Kyats</h3>
                     <p class="mb-4">{{$pizza->description}}</p>
@@ -80,6 +80,17 @@
 @section('scriptSource')
     <script>
         $(document).ready(function(){
+
+            // view count calculate
+            $pizzaID = $('#pizzaID').val();
+            $.ajax({
+                    type: "get",
+                    url: "http://127.0.0.1:8000/user/ajax/increase/viewCount",
+                    data: {'product_id': $pizzaID} ,
+                    dataType: "json",
+            });
+
+            // add to cart when clicked
             $('#addCartBtn').click(function(){
 
                 $source = {
