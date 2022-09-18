@@ -69,6 +69,11 @@
                                 <i class="fa-solid fa-file-invoice"></i>Order List
                             </a>
                         </li>
+                        <li class="has-sub">
+                            <a href="{{route('admin#showUserList')}}">
+                                <i class="fa-solid fa-user-group"></i>User List
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

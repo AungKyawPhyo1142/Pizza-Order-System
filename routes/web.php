@@ -3,6 +3,7 @@
 use App\Models\Products;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
@@ -86,6 +87,13 @@ Route::middleware(['auth'])->group(function () {
             Route::get('ajax/change/status',[OrderController::class,'changeStatus'])->name('admin#changeStatus');
             Route::get('orderInfo/{order_code}',[OrderController::class,'orderInfo'])->name('admin#orderInfo');
         });
+
+        // User List
+        Route::prefix('user')->group(function(){
+            Route::get('list',[AdminUserController::class,'showUserList'])->name('admin#showUserList');
+            Route::get('change/role',[AdminUserController::class,'changeUserRole'])->name('admin#changeUserRole');
+        });
+
 
     });
 

@@ -19,16 +19,6 @@
                             <i class="fa-solid fa-database me-2"></i>
                             <span> {{$admin->total()}} </span>
                         </div>
-                        <div class="table-data__tool-right">
-                            <a href="{{route('category#createPage')}}">
-                                <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                    <i class="zmdi zmdi-plus"></i>Add Category
-                                </button>
-                            </a>
-                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                CSV download
-                            </button>
-                        </div>
                     </div>
 
                     <div class="row">
