@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Contact;
@@ -60,5 +61,40 @@ class RouteController extends Controller
         ];
 
         return response()->json($data, 200);
+    }
+
+    // insert new categories
+    public function createCategory(Request $req){
+        // use dd($req->all()) to print out the data which was sent inside the BODY of an API
+        // use dd($req->header('headerData')) to print out the data which was sent inside the HEADER of an API
+        $data = [
+            'name' => $req->name,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ];
+
+        $response = Category::create($data);
+
+        return response()->json($response, 200);
+    }
+
+    // insert a new feedback
+    public function createFeedback(Request $req){
+        $data = [
+            'name' => $req->name,
+            'email' => $req->email,
+            'message' => $req->message,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ];
+
+        $response = Contact::create($data);
+        return response()->json($response, 200);
+    }
+
+
+    // delete category
+    public function deleteCategory(Request $req){
+        return $req->all();
     }
 }
