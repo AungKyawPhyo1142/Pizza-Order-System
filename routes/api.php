@@ -78,3 +78,9 @@ Route::post('create/feedback',[RouteController::class,'createFeedback']);
 
 // delete category
 Route::post('delete/category',[RouteController::class,'deleteCategory']);
+
+// category details
+Route::get('details/category/{id}',[RouteController::class,'detailsCategory']);
+
+// update
+Route::post('update/category',[RouteController::class,'updateCategory']);
