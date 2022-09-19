@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\RouteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,41 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*
+
+    -------------------------------------------------------------------------------------------------
+    - API to get all the data: http://127.0.0.1:8000/api/all/list  (get)
+    -------------------------------------------------------------------------------------------------
+
+    - API to get all the products data: http://127.0.0.1:8000/api/product/list  (get)
+
+    - API to get all the categories data: http://127.0.0.1:8000/api/category/list  (get)
+
+    - API to get all the user data: http://127.0.0.1:8000/api/user/list  (get)
+
+    - API to get all the order data: http://127.0.0.1:8000/api/order/list  (get)
+
+    - API to get all the feedbacks data: http://127.0.0.1:8000/api/feedbacks/list  (get)
+
+    -------------------------------------------------------------------------------------------------
+
+*/
+
+// get all products data
+Route::get('product/list',[RouteController::class,'getProductData']);
+
+// get all category data
+Route::get('category/list',[RouteController::class,'getCategoryData']);
+
+// get all user data
+Route::get('user/list',[RouteController::class,'getUserData']);
+
+// get all order data
+Route::get('order/list',[RouteController::class,'getOrderData']);
+
+// get all user feedbacks data
+Route::get('feedbacks/list',[RouteController::class,'getFeedbackData']);
+
+// get all the data
+Route::get('all/list',[RouteController::class,'getAllData']);
